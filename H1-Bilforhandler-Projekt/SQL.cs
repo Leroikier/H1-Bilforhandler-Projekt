@@ -13,6 +13,7 @@ namespace H1_Bilforhandler_Projekt
         private static string ConnectionString = "Data Source=SKAB1-PC-11;Initial Catalog=Autoshop; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
 
+        //Insert // husk og tilføje til klasse diagram
         public static void insert(string SQL)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -23,6 +24,7 @@ namespace H1_Bilforhandler_Projekt
             }
         }
 
+        //Select
         public static void select(string SQL)
         {
             DataTable table = new DataTable();
