@@ -17,8 +17,10 @@ namespace H1_Bilforhandler_Projekt
         public string ReqDate { get; set; }
 
 
+        //Create Customer
         public void createCustomer()
         {
+            Console.Clear();
             Console.Write("Type Firstname : ");
             fName = Console.ReadLine();
 
