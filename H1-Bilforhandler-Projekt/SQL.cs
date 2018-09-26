@@ -11,10 +11,9 @@ namespace H1_Bilforhandler_Projekt
     class SQL
     {
         private static string ConnectionString = "Data Source=SKAB1-PC-11;Initial Catalog=Autoshop; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
-
+        
         //Insert // husk og tilføje til klasse diagram
-        public static void insert(string SQL)
+        public static void sqlconnection(string SQL)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -23,9 +22,57 @@ namespace H1_Bilforhandler_Projekt
                 cmd.ExecuteNonQuery();
             }
         }
-
         //Select
-        public static void select(string SQL)
+        public static void selectCustomers(string SQL)
+        {
+            Console.Clear();
+            DataTable table = new DataTable();
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
+                adapter.Fill(table);
+
+                foreach (DataRow Customer in table.Rows)
+                {
+                    Console.Write(Customer["id"].ToString() + " | ");
+                    Console.Write(Customer["fName"].ToString() + " | ");
+                    Console.Write(Customer["lName"].ToString() + " | ");
+                    Console.Write(Customer["regDate"].ToString() + " | ");
+                    Console.Write(Customer["adr"].ToString() + " | ");
+                    Console.Write(Customer["pNumber"].ToString() + "\n");                    
+                }                
+                //For at få vist en bestemt kolonne i en bestemt række
+                //string theFirstRow = table.Rows[0]["fName"].ToString();
+            }
+            Console.ReadKey();
+        }
+        public static void selectCars(string SQL)
+        {
+            //Console.Clear();
+            DataTable table = new DataTable();
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
+                adapter.Fill(table);
+
+                foreach (DataRow Customer in table.Rows)
+                {
+                    Console.Write(Customer["id"].ToString() + " | ");
+                    Console.Write(Customer["brand"].ToString() + " | ");
+                    Console.Write(Customer["model"].ToString() + " | ");
+                    Console.Write(Customer["age"].ToString() + " | ");
+                    Console.Write(Customer["regNumber"].ToString() + " | ");
+                    Console.Write(Customer["regDate"].ToString() + " | ");
+                    Console.Write(Customer["miles"].ToString() + " | ");
+                    Console.Write(Customer["fuelType"].ToString() + " | ");
+                    Console.Write(Customer["customerID"].ToString() + "\n");
+                }
+            }
+            Console.ReadKey();
+        }
+        public static void selectAppointments(string SQL)
         {
             Console.Clear();
             DataTable table = new DataTable();
@@ -38,55 +85,10 @@ namespace H1_Bilforhandler_Projekt
                 foreach (DataRow Customer in table.Rows)
                 {
                     Console.WriteLine(Customer["id"].ToString());
-                    Console.WriteLine(Customer["fName"].ToString());
-                    Console.WriteLine(Customer["lName"].ToString());
-                    Console.WriteLine(Customer["reqDate"].ToString());
-                    Console.WriteLine(Customer["adr"].ToString());
-                    Console.WriteLine(Customer["pNumber"].ToString());
+                    Console.WriteLine(Customer["arrivalDate"].ToString());
+                    Console.WriteLine(Customer["leavingDate"].ToString());
+                    Console.WriteLine(Customer["carID"].ToString());
                     Console.WriteLine();
-                }
-                
-                //For at få vist en bestemt kolonne i en bestemt række
-                //string theFirstRow = table.Rows[0]["fName"].ToString();
-            }
-            Console.ReadKey();
-        }
-
-        //Update
-        public static void update(string SQL)
-        {
-            Console.Write("Type Phone Number of a Customer : ");
-            string input = Console.ReadLine();
-            select("select * from Customer Where pNumber ="+ input);
-            Console.Write("What information do you want to update : ");
-            Console.WriteLine("1. First Name");
-            Console.WriteLine("2. Last Name");
-            Console.WriteLine("3. Registration Date");
-            Console.WriteLine("4. Adress");
-            Console.WriteLine("5. Phone Number");
-            string choice = Console.ReadLine();
-            
-            switch  (choice)
-            {
-                case "1":
-                {
-                        break;
-                }
-                case "2":
-                {
-                        break;
-                }
-                case "3":
-                {
-                        break;
-                }
-                case "4":
-                {
-                        break;
-                }
-                case "5":
-                {
-                        break;
                 }
             }
             Console.ReadKey();
