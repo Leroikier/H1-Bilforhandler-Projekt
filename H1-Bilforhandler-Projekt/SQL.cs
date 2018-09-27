@@ -22,6 +22,7 @@ namespace H1_Bilforhandler_Projekt
                 cmd.ExecuteNonQuery();
             }
         }
+
         //Select
         public static void selectCustomers(string SQL)
         {
@@ -35,7 +36,7 @@ namespace H1_Bilforhandler_Projekt
 
                 foreach (DataRow Customer in table.Rows)
                 {
-                    Console.Write(Customer["id"].ToString() + " | ");
+                    Console.Write(" " + Customer["id"].ToString() + " | ");
                     Console.Write(Customer["fName"].ToString() + " | ");
                     Console.Write(Customer["lName"].ToString() + " | ");
                     Console.Write(Customer["regDate"].ToString() + " | ");
@@ -47,6 +48,8 @@ namespace H1_Bilforhandler_Projekt
             }
             Console.ReadKey();
         }
+
+        //Select Cars
         public static void selectCars(string SQL)
         {
             //Console.Clear();
@@ -59,7 +62,7 @@ namespace H1_Bilforhandler_Projekt
 
                 foreach (DataRow Customer in table.Rows)
                 {
-                    Console.Write(Customer["id"].ToString() + " | ");
+                    Console.Write(" " + Customer["id"].ToString() + " | ");
                     Console.Write(Customer["brand"].ToString() + " | ");
                     Console.Write(Customer["model"].ToString() + " | ");
                     Console.Write(Customer["age"].ToString() + " | ");
@@ -72,9 +75,11 @@ namespace H1_Bilforhandler_Projekt
             }
             Console.ReadKey();
         }
+
+        //Select Appointments
         public static void selectAppointments(string SQL)
         {
-            Console.Clear();
+            //Console.Clear();
             DataTable table = new DataTable();
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -82,13 +87,13 @@ namespace H1_Bilforhandler_Projekt
                 SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
                 adapter.Fill(table);
 
+                Console.WriteLine("\n id");
                 foreach (DataRow Customer in table.Rows)
                 {
-                    Console.WriteLine(Customer["id"].ToString());
-                    Console.WriteLine(Customer["arrivalDate"].ToString());
-                    Console.WriteLine(Customer["leavingDate"].ToString());
-                    Console.WriteLine(Customer["carID"].ToString());
-                    Console.WriteLine();
+                    Console.Write(" " + Customer["id"].ToString() + " | ");
+                    Console.Write(Customer["arrivalDate"].ToString() + " | ");
+                    Console.Write(Customer["leavingDate"].ToString() + " | ");
+                    Console.Write(Customer["carID"].ToString() + "\n");
                 }
             }
             Console.ReadKey();

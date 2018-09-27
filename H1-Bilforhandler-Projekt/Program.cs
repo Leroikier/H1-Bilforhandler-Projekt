@@ -21,8 +21,7 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
 
-                Console.WriteLine();
-                Console.WriteLine(" Welcome too AutoShop 1.0\n");
+                Console.WriteLine(" \n Welcome too AutoShop 1.0\n");
                 Console.WriteLine(" 1. Create Customer");
                 Console.WriteLine(" 2. Edit Customer");
                 Console.WriteLine(" 3. Delete Customer");
@@ -56,6 +55,7 @@ namespace H1_Bilforhandler_Projekt
                         }
                     case "3":
                         {
+                            customer1.deleteCustomer();
                             break;
                         }
                     case "4":
@@ -70,10 +70,12 @@ namespace H1_Bilforhandler_Projekt
                         }
                     case "6":
                         {
+                            car1.updateCar();
                             break;
                         }
                     case "7":
                         {
+                            car1.deleteCar();
                             break;
                         }
                     case "8":
@@ -83,19 +85,22 @@ namespace H1_Bilforhandler_Projekt
                         }
                     case "9":
                         {
+                            car1.createAppointment();
                             break;
                         }
                     case "10":
                         {
+                            car1.editAppointments();
                             break;
                         }
                     case "11":
                         {
+                            car1.deleteAppointment();
                             break;
                         }
                     case "12":
                         {
-                            SQL.selectAppointments("select * from carAppointments ORDER BY id");
+                            car1.showAppointments();
                             break;
                         }
                     case "13":
