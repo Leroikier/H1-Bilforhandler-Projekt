@@ -13,7 +13,7 @@ namespace H1_Bilforhandler_Projekt
         private string model;
         private int age;
         private string regNumber;
-        private string regDate;
+        private string carDate;
         private int miles;
         private string fuelType;
         private int customerID;
@@ -25,35 +25,43 @@ namespace H1_Bilforhandler_Projekt
         public void createCar()
         {
             Console.Clear();
-            Console.Write(" \nType Brand : ");
-            brand = Console.ReadLine();
+            Console.Write("\n Type Brand : ");
+            brand = Console.ReadLine().ToUpper();
 
             Console.Write(" Type Model : ");
-            model = Console.ReadLine();
+            model = Console.ReadLine().ToUpper();
 
             Console.Write(" Type Age : ");
             age = Int32.Parse(Console.ReadLine());
 
             Console.Write(" Type Registration number : ");
-            regNumber = Console.ReadLine();
+            regNumber = Console.ReadLine().ToUpper();
 
             Console.Write(" Type Registration Date : ");
-            regDate = Console.ReadLine();
+            carDate = Console.ReadLine();
 
             Console.Write(" Type Miles : ");
             miles = Int32.Parse(Console.ReadLine());
 
             Console.Write(" Type Fueltype : ");
-            fuelType = Console.ReadLine();
+            fuelType = Console.ReadLine().ToUpper();
 
             Console.Write(" Type Owner's phone : ");
             customerID = Int32.Parse(Console.ReadLine());
 
-            string statement = "insert into Cars values ('" + brand + "','" + model + "'," + age + ",'" + regNumber + "','" + regDate + "'," + miles + ",'" + fuelType + "'," + customerID + ")";
+            string statement = "insert into Cars values ('" + brand + "','" + model + "'," + age + ",'" + regNumber + "','" + carDate + "'," + miles + ",'" + fuelType + "'," + customerID + ")";
 
-            SQL.sqlconnection(statement);
-
-            Console.WriteLine("\n Car Created");
+            try
+            {
+                SQL.sqlconnection(statement);
+                Console.WriteLine("\n Car Created");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\n ERROR : Registration number belongs to another car!");
+                Console.ReadKey();
+            }
+            Console.WriteLine("\n Returning to main menu");
 
             Thread.Sleep(3000);
         }
@@ -61,12 +69,14 @@ namespace H1_Bilforhandler_Projekt
         //Show Cars
         public void showCars()
         {
+            Console.Clear();
             string input1 = "";
-            Console.Write(" \nType Phone Number of a Customer : ");
+            Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1 + "ORDER by ID");
-            Console.ReadKey();
+            
+            Thread.Sleep(3000);
         }
 
         //Delete Car
@@ -78,13 +88,16 @@ namespace H1_Bilforhandler_Projekt
             input1 = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1);
-            Console.Write(" Type the registration number of the car you want to delete : ");
-            string choice = Console.ReadLine();
+            Console.Write("\n Type the registration number of the car you want to delete : ");
+            string choice = Console.ReadLine().ToUpper();
 
-            string statement = ("delete from Cars Where regNumber =" + choice + "\n");
-            SQL.sqlconnection(statement);
+            //string statement = ("delete from carAppointments Where carID = '" + choice + "'");
+            //SQL.sqlconnection(statement);
+
+            string statement2 = ("delete from Cars Where regNumber = '" + choice + "'" + "\n");
+            SQL.sqlconnection(statement2);
             Console.WriteLine("\n Car has been erased");
-
+            Console.WriteLine("\n Returning to main menu");
             Thread.Sleep(3000);
         }
 
@@ -98,7 +111,7 @@ namespace H1_Bilforhandler_Projekt
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1);
             Console.Write(" Type the registration number of the car you want to update : ");
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine().ToUpper();
 
             Console.WriteLine(" 1. Brand");
             Console.WriteLine(" 2. Model");
@@ -116,22 +129,22 @@ namespace H1_Bilforhandler_Projekt
                 case "1":
                     {
                         Console.Write(" Input new brand name : ");
-                        input2 = Console.ReadLine();
+                        input2 = Console.ReadLine().ToUpper();
                         column = "brand";
                         break;
                     }
                 case "2":
                     {
                         Console.Write(" Input new model name : ");
-                        input2 = Console.ReadLine();
+                        input2 = Console.ReadLine().ToUpper();
                         column = "model";
                         break;
                     }
                 case "3":
                     {
                         Console.Write(" Input new registration date : ");
-                        input2 = Console.ReadLine();
-                        column = "regDate";
+                        input2 = Console.ReadLine().ToUpper();
+                        column = "carDate";
                         break;
                     }
                 case "4":
@@ -151,7 +164,7 @@ namespace H1_Bilforhandler_Projekt
                 case "6":
                     {
                         Console.Write(" Input new fueltype : ");
-                        input2 = Console.ReadLine();
+                        input2 = Console.ReadLine().ToUpper();
                         column = "fuelType";
                         break;
                     }
@@ -171,9 +184,19 @@ namespace H1_Bilforhandler_Projekt
                     }
             }
             string statement = ("update Cars set " + column + " = " + "'" + input2 + "'" + " where regNumber = " + "'" + choice + "'");
-            SQL.sqlconnection(statement);
 
-            Console.WriteLine("\n Car info updated");
+            try
+            {
+                SQL.sqlconnection(statement);
+                Console.WriteLine("\n Car info updated");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\n Registration ID already exists");
+                Console.ReadKey();
+            }
+
+            Console.WriteLine("\n Returning to main menu");
             Thread.Sleep(3000);
         }
 
@@ -182,23 +205,24 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input;
-            Console.Write(" \nType Phone Number of a Customer : ");
+            Console.Write("\n Type Phone Number of a Customer : ");
             input = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input + "\n");
             Thread.Sleep(100);
             SQL.selectCars("select * from Cars where customerID =" + input);
             Console.Write("\n Type the registration number of the car you want to create an appointment for : ");
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine().ToUpper();
 
-            Console.Write(" Input the arrival date : ");
+            Console.Write("\n Input the arrival date : ");
             arrivalDate = Console.ReadLine();
-            Console.Write(" Input the leaving date : ");
+            Console.Write("\n Input the leaving date : ");
             leavingDate = Console.ReadLine();
 
             string statement = "insert into carAppointments values ('" + arrivalDate + "','" + leavingDate + "','" + choice + "')";
             SQL.sqlconnection(statement);
 
-            Console.WriteLine("\n Appointment made!\n Returning to main menu...");
+            Console.WriteLine("\n Appointment made");
+            Console.WriteLine("\n Returning to main menu...");
             Thread.Sleep(3000);
         }
 
@@ -213,13 +237,14 @@ namespace H1_Bilforhandler_Projekt
             Console.WriteLine(" Cars belonging to this customer:");
             SQL.selectCars("select * from Cars where customerID =" + input);
             Console.Write("\n Type the registration number of the car whose appointments you want to view : ");
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine().ToUpper();
 
-            //SQL.selectCustomers("select * from Customer Where pNumber =" + input + "\n");
+            
             Console.WriteLine("\n Appointments for this car:");
             SQL.selectAppointments("select * from carAppointments Where carID = '" + choice + "' order by id" + "\n");
             Console.ReadKey();
         }
+
         //Edit Appointments
         public void editAppointments()
         {
@@ -230,7 +255,7 @@ namespace H1_Bilforhandler_Projekt
             //SQL.selectCustomers("select * from Customer Where pNumber =" + input1);
             SQL.selectCars("select * from Cars where customerID =" + input1);
             Console.Write("\n Type the registration number of the car whose appointments you want to edit : ");
-            string choice1 = Console.ReadLine();
+            string choice1 = Console.ReadLine().ToUpper();
             SQL.selectAppointments("select * from carAppointments Where carID = '" + choice1 + "' order by id");
             Console.WriteLine("\n 1. Arrival date");
             Console.WriteLine(" 2. Leaving date");
@@ -242,32 +267,32 @@ namespace H1_Bilforhandler_Projekt
             {
                 case "1":
                     {
-                        Console.Write(" Input new arrival date : ");
+                        Console.Write("\n Input new arrival date : ");
                         input2 = Console.ReadLine();
                         column = "arrivalDate";
                         break;
                     }
                 case "2":
                     {
-                        Console.Write(" Input new leaving date : ");
+                        Console.Write("\n Input new leaving date : ");
                         input2 = Console.ReadLine();
                         column = "leavingDate";
                         break;
                     }
                 case "3":
                     {
-                        Console.Write(" Input new car id : ");
-                        input2 = Console.ReadLine();
+                        Console.Write("\n Input new car id : ");
+                        input2 = Console.ReadLine().ToUpper();
                         column = "carID";
                         break;
                     }
             }
             string statement = ("update carAppointments set " + column + " = " + "'" + input2 + "'" + " where carID = '" + choice1 + "'");
             SQL.sqlconnection(statement);
-
             Console.WriteLine("\n Appointment info updated!");
             Thread.Sleep(3000);
         }
+
         //Delete Appointments
         public void deleteAppointment()
         {
@@ -278,13 +303,23 @@ namespace H1_Bilforhandler_Projekt
             //SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1);
             Console.Write("\n Type the registration number of the car whose appointments you want to delete : ");
-            string choice1 = Console.ReadLine();
+            string choice1 = Console.ReadLine().ToUpper();
             SQL.selectAppointments("select * from carAppointments Where carID = '" + choice1 + "' order by id");
             Console.Write("Select the id of the appointment you wish to delete : ");
             string choice2 = Console.ReadLine();
             string statement = ("delete from carAppointments Where id = " + choice2);
-            SQL.sqlconnection(statement);
-            Console.WriteLine("\n Appointment has been erased!");
+            try
+            {
+                SQL.sqlconnection(statement);
+                Console.WriteLine("\n Appointment has been erased!");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\n No appointment with that id exists!");
+                Console.ReadKey();
+            }
+
+            Console.WriteLine("\n Returning to main menu!");
 
             Thread.Sleep(3000);
         }

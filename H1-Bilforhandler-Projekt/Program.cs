@@ -60,7 +60,7 @@ namespace H1_Bilforhandler_Projekt
                         }
                     case "4":
                         {
-                            SQL.selectCustomers("select * from Customer ORDER BY id");
+                            SQL.selectCustomersAndCars("select * from Customer left join Cars on pNumber = customerID Order BY fName");
                             break;
                         }
                     case "5":
@@ -111,6 +111,7 @@ namespace H1_Bilforhandler_Projekt
                 }
             }            
             while (quit == false);
+
         }
     }
 }
