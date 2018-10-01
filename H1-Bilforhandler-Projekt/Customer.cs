@@ -15,6 +15,8 @@ namespace H1_Bilforhandler_Projekt
         private string Adr;
         private int pNumber;
 
+        private string check = "OK";
+
         //Create Customer
         public void createCustomer()
         {
@@ -25,14 +27,32 @@ namespace H1_Bilforhandler_Projekt
             Console.Write(" Type Lastname : ");
             lName = Console.ReadLine().ToUpper();
 
-            Console.Write(" Type Registration Date : ");
+            Console.Write(" Type Registration Date dd-mm-yyyy : ");
             customerDate = Console.ReadLine();
 
             Console.Write(" Type Address : ");
             Adr = Console.ReadLine().ToUpper();
+            do
+            {
+                check = "OK";
+                Console.Write(" Type Phone Number : ");
+                string input = Console.ReadLine();
+                if (input.Length != 8)
+                {
+                    Console.WriteLine("Phone number must be 8 characters long!");
+                    Console.ReadKey();
+                    check = "not OK";
+                }
+                else if (Int32.TryParse(input, out pNumber))
+                    pNumber = Int32.Parse(input);
+                else
+                {
+                    Console.WriteLine("Only numbers allowed!");
+                    check = "not OK";
+                }
+            }
+            while (check == "not OK");
 
-            Console.Write(" Type Phone Number : ");
-            pNumber = Int32.Parse(Console.ReadLine());
 
             string statement = "insert into Customer values ('" + fName + "','" + lName+ "','" + customerDate + "','" + Adr + "'," + pNumber + ")";
             try
@@ -54,8 +74,8 @@ namespace H1_Bilforhandler_Projekt
         public void updateCustomer()
         {
             Console.Clear();
-            string input1, input2="", column="";
-            Console.Write(" \nType Phone Number of a Customer : ");
+            string input1, input2="", column="", statement="";
+            Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1); 
             Console.WriteLine("\n 1. First Name");
@@ -101,10 +121,11 @@ namespace H1_Bilforhandler_Projekt
                         Console.Write("\n Input new phone number : ");
                         input2 = Console.ReadLine();
                         column = "pNumber";
+                        statement = ("update Customer set " + column + " = " + input2 + " where pNumber = " + input1);
                         break;
                     }
             }
-            string statement = ("update Customer set " + column + " = " + "'" + input2 + "'" + " where pNumber = " + input1);
+            //string statement = ("update Customer set " + column + " = " + "'" + input2 + "'" + " where pNumber = " + input1);
             try
             {
                 SQL.sqlconnection(statement);
@@ -124,7 +145,7 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1 = "";
-            Console.Write(" \n Type Phone Number of a Customer : ");
+            Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
           
@@ -133,13 +154,9 @@ namespace H1_Bilforhandler_Projekt
 
             if (choice == "Y")
             {
-                //string statement = ("delete from carAppointments Where carID = regNumber and pNumber = " + input1);
-                //SQL.sqlconnection(statement);
-                //string statement1 = ("delete from Cars Where customerID=" + input1 + "\n");
-                //SQL.sqlconnection(statement1);
                 string statement2 = ("delete from Customer Where pNumber=" + input1 + "\n");
                 SQL.sqlconnection(statement2);
-                Console.WriteLine(" \nCustomer has been erased!\n Returning to main menu...");
+                Console.WriteLine("\n Customer has been erased!\n Returning to main menu...");
             }
             else
             {

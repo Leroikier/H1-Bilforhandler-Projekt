@@ -34,15 +34,17 @@ namespace H1_Bilforhandler_Projekt
                 SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
                 adapter.Fill(table);
 
-                Console.WriteLine("\n id | Name | Lastname | RegDate | Adress | Phone");
+                
                 foreach (DataRow Customer in table.Rows)
                 {
-                    Console.Write(" " + Customer["id"].ToString() + " | ");
-                    Console.Write(Customer["fName"].ToString() + " | ");
-                    Console.Write(Customer["lName"].ToString() + " | ");
-                    Console.Write(Customer["customerDate"].ToString() + " | ");
-                    Console.Write(Customer["adr"].ToString() + " | ");
-                    Console.Write(Customer["pNumber"].ToString() + "\n");                    
+                    Console.WriteLine("\n Customer information");
+                    Console.WriteLine("\n ID : " + Customer["id"].ToString());
+                    Console.WriteLine(" First name : " + Customer["fName"].ToString());
+                    Console.WriteLine(" Last name : " + Customer["lName"].ToString());
+                    Console.WriteLine(" Registration date : " + Customer["customerDate"].ToString());
+                    Console.WriteLine(" Adress : " + Customer["adr"].ToString());
+                    Console.WriteLine(" Phone number : " + Customer["pNumber"].ToString());
+                    Console.WriteLine("_____________________________________");
                 }
                 //For at få vist en bestemt kolonne i en bestemt række
                 //string theFirstRow = table.Rows[0]["fName"].ToString();
@@ -61,18 +63,20 @@ namespace H1_Bilforhandler_Projekt
                 SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
                 adapter.Fill(table);
 
-                Console.WriteLine("\n id | Brand | Model | Age | RegNumber | RegDate | Mileage | Fueltype | Owner");
+                
                 foreach (DataRow Customer in table.Rows)
                 {
-                    Console.Write(" " + Customer["id"].ToString() + " | ");
-                    Console.Write(Customer["brand"].ToString() + " | ");
-                    Console.Write(Customer["model"].ToString() + " | ");
-                    Console.Write(Customer["age"].ToString() + " | ");
-                    Console.Write(Customer["regNumber"].ToString() + " | ");
-                    Console.Write(Customer["carDate"].ToString() + " | ");
-                    Console.Write(Customer["miles"].ToString() + " | ");
-                    Console.Write(Customer["fuelType"].ToString() + " | ");
-                    Console.Write(Customer["customerID"].ToString() + "\n");
+                    
+                    Console.WriteLine(" \n ID : " + Customer["id"].ToString());
+                    Console.WriteLine(" Brand :  " + Customer["brand"].ToString());
+                    Console.WriteLine(" Model :  " + Customer["model"].ToString());
+                    Console.WriteLine(" Age :  " + Customer["age"].ToString());
+                    Console.WriteLine(" Registration number :  " + Customer["regNumber"].ToString());
+                    Console.WriteLine(" Registration date :  " + Customer["carDate"].ToString());
+                    Console.WriteLine(" Miles :  " + Customer["miles"].ToString());
+                    Console.WriteLine(" Fuel type :  " + Customer["fuelType"].ToString());
+                    Console.WriteLine(" Customer reference :  " + Customer["customerID"].ToString());
+                    Console.WriteLine("_____________________________________");
                 }
             }
             Console.ReadKey();
@@ -92,10 +96,13 @@ namespace H1_Bilforhandler_Projekt
                 Console.WriteLine("\n id");
                 foreach (DataRow Customer in table.Rows)
                 {
-                    Console.Write(" " + Customer["id"].ToString() + " | ");
-                    Console.Write(Customer["arrivalDate"].ToString() + " | ");
-                    Console.Write(Customer["leavingDate"].ToString() + " | ");
-                    Console.Write(Customer["carID"].ToString() + "\n");
+                    Console.Clear();
+                    Console.WriteLine("\n Car Appointment\n");
+                    Console.WriteLine(" ID : " + Customer["id"].ToString());
+                    Console.WriteLine(" Arrival date :  " + Customer["arrivalDate"].ToString());
+                    Console.WriteLine(" Leaving date :  " + Customer["leavingDate"].ToString());
+                    Console.WriteLine(" Registration number :  " + Customer["carID"].ToString());
+                    Console.WriteLine("_____________________________________");
                 }
             }
             Console.ReadKey();
@@ -112,24 +119,27 @@ namespace H1_Bilforhandler_Projekt
                 SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
                 adapter.Fill(table);
 
-                Console.WriteLine("\n id | Name | Lastname | RegDate | Adress | Phone | id | Brand | Model | Age | RegNumber | RegDate | Mileage | Fueltype | Owner ");
+                
                 foreach (DataRow CustomerAndCars in table.Rows)
                 {
-                    Console.Write(" " + CustomerAndCars["id"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["fName"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["lName"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["customerDate"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["adr"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["pNumber"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["id"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["brand"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["model"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["age"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["regNumber"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["carDate"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["miles"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["fuelType"].ToString() + " | ");
-                    Console.Write(CustomerAndCars["customerID"].ToString() + "\n");
+                    Console.WriteLine("\n Customer information");
+                    Console.WriteLine(" ID : " + CustomerAndCars["id"].ToString());
+                    Console.WriteLine(" First name : " + CustomerAndCars["fName"].ToString());
+                    Console.WriteLine(" Last name : " + CustomerAndCars["lName"].ToString());
+                    Console.WriteLine(" Registration date : " + CustomerAndCars["customerDate"].ToString());
+                    Console.WriteLine(" Adress : " + CustomerAndCars["adr"].ToString());
+                    Console.WriteLine(" Phone number : " + CustomerAndCars["pNumber"].ToString());
+                    Console.WriteLine("\n Cars belonging to this customer");
+                    Console.WriteLine(" ID : " + CustomerAndCars["id"].ToString());
+                    Console.WriteLine(" Brand : " + CustomerAndCars["brand"].ToString());
+                    Console.WriteLine(" Model : " + CustomerAndCars["model"].ToString());
+                    Console.WriteLine(" Age : " + CustomerAndCars["age"].ToString());
+                    Console.WriteLine(" Registration number : " + CustomerAndCars["regNumber"].ToString());
+                    Console.WriteLine(" Registration date : " + CustomerAndCars["carDate"].ToString());
+                    Console.WriteLine(" Miles : " + CustomerAndCars["miles"].ToString());
+                    Console.WriteLine(" Fuel type : " + CustomerAndCars["fuelType"].ToString());
+                    Console.WriteLine(" Customer reference : " + CustomerAndCars["customerID"].ToString());
+                    Console.WriteLine("_____________________________________");
 
                 }
                 //For at få vist en bestemt kolonne i en bestemt række

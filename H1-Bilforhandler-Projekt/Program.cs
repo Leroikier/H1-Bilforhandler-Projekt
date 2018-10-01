@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
@@ -60,7 +61,31 @@ namespace H1_Bilforhandler_Projekt
                         }
                     case "4":
                         {
-                            SQL.selectCustomersAndCars("select * from Customer left join Cars on pNumber = customerID Order BY fName");
+                            Console.Clear();
+                            Console.WriteLine("\n 1. Order by First name");
+                            Console.WriteLine(" 2. Order by Car Brand");
+                            Console.Write(" Choose how to order the list : ");
+                            string input = Console.ReadLine();
+
+                            switch (input)
+                            {
+                                case "1":
+                                    {
+                                        SQL.selectCustomersAndCars("select * from Customer left join Cars on pNumber = customerID Order BY fName");
+                                        break;
+                                    }
+                                case "2":
+                                    {
+                                        SQL.selectCustomersAndCars("select * from Customer left join Cars on pNumber = customerID Order BY brand");
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("\n Invalid input! Returning to main menu...");
+                                        Thread.Sleep(2000);
+                                        break;
+                                    }
+                            }
                             break;
                         }
                     case "5":

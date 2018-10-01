@@ -91,9 +91,6 @@ namespace H1_Bilforhandler_Projekt
             Console.Write("\n Type the registration number of the car you want to delete : ");
             string choice = Console.ReadLine().ToUpper();
 
-            //string statement = ("delete from carAppointments Where carID = '" + choice + "'");
-            //SQL.sqlconnection(statement);
-
             string statement2 = ("delete from Cars Where regNumber = '" + choice + "'" + "\n");
             SQL.sqlconnection(statement2);
             Console.WriteLine("\n Car has been erased");
@@ -106,14 +103,15 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1, input2 = "", column = "";
-            Console.Write(" \nType Phone Number of a Customer : ");
+            Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1);
-            Console.Write(" Type the registration number of the car you want to update : ");
+            Console.Write("\n Type the registration number of the car you want to update : ");
             string choice = Console.ReadLine().ToUpper();
 
-            Console.WriteLine(" 1. Brand");
+            Console.Clear();
+            Console.WriteLine("\n 1. Brand");
             Console.WriteLine(" 2. Model");
             Console.WriteLine(" 3. Registration Date");
             Console.WriteLine(" 4. Registration Number");
@@ -121,63 +119,63 @@ namespace H1_Bilforhandler_Projekt
             Console.WriteLine(" 6. Fueltype");
             Console.WriteLine(" 7. Miles");
             Console.WriteLine(" 8. Customer ID");
-            Console.Write(" What information do you want to update : ");
+            Console.Write("\n What information do you want to update : ");
             string choice1 = Console.ReadLine();
 
             switch (choice1)
             {
                 case "1":
                     {
-                        Console.Write(" Input new brand name : ");
+                        Console.Write("\n Input new brand name : ");
                         input2 = Console.ReadLine().ToUpper();
                         column = "brand";
                         break;
                     }
                 case "2":
                     {
-                        Console.Write(" Input new model name : ");
+                        Console.Write("\n Input new model name : ");
                         input2 = Console.ReadLine().ToUpper();
                         column = "model";
                         break;
                     }
                 case "3":
                     {
-                        Console.Write(" Input new registration date : ");
+                        Console.Write("\n Input new registration date : ");
                         input2 = Console.ReadLine().ToUpper();
                         column = "carDate";
                         break;
                     }
                 case "4":
                     {
-                        Console.Write(" Input new registration number : ");
+                        Console.Write("\n Input new registration number : ");
                         input2 = Console.ReadLine();
                         column = "regNumber";
                         break;
                     }
                 case "5":
                     {
-                        Console.Write(" Input new age : ");
+                        Console.Write("\n Input new age : ");
                         input2 = Console.ReadLine();
                         column = "age";
                         break;
                     }
                 case "6":
                     {
-                        Console.Write(" Input new fueltype : ");
+                        Console.Write("\n Input new fueltype : ");
                         input2 = Console.ReadLine().ToUpper();
                         column = "fuelType";
                         break;
                     }
                 case "7":
                     {
-                        Console.Write(" Input new miles : ");
+                        Console.Write("\n Input new miles : ");
                         input2 = Console.ReadLine();
                         column = "miles";
                         break;
                     }
                 case "8":
                     {
-                        Console.Write(" Input new customer ID : ");
+                        Console.Write("\n Input new customer ID : ");
                         input2 = Console.ReadLine();
                         column = "customerID";
                         break;
@@ -231,10 +229,10 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input;
-            Console.Write(" \nType Phone Number of a Customer : ");
+            Console.Write("\n Type Phone Number of a Customer : ");
             input = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input + "\n");
-            Console.WriteLine(" Cars belonging to this customer:");
+            Console.WriteLine("\n Cars belonging to this customer:");
             SQL.selectCars("select * from Cars where customerID =" + input);
             Console.Write("\n Type the registration number of the car whose appointments you want to view : ");
             string choice = Console.ReadLine().ToUpper();
@@ -250,7 +248,7 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1, input2 = "", column = "";
-            Console.Write(" \n Type Phone Number of a Customer : ");
+            Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
             //SQL.selectCustomers("select * from Customer Where pNumber =" + input1);
             SQL.selectCars("select * from Cars where customerID =" + input1);
@@ -260,7 +258,7 @@ namespace H1_Bilforhandler_Projekt
             Console.WriteLine("\n 1. Arrival date");
             Console.WriteLine(" 2. Leaving date");
             Console.WriteLine(" 3. Car ID\n");
-            Console.Write(" What information do you want to update? : ");
+            Console.Write("\n What information do you want to update? : ");
             string choice2 = Console.ReadLine();
 
             switch (choice2)
@@ -305,7 +303,7 @@ namespace H1_Bilforhandler_Projekt
             Console.Write("\n Type the registration number of the car whose appointments you want to delete : ");
             string choice1 = Console.ReadLine().ToUpper();
             SQL.selectAppointments("select * from carAppointments Where carID = '" + choice1 + "' order by id");
-            Console.Write("Select the id of the appointment you wish to delete : ");
+            Console.Write("\n Select the id of the appointment you wish to delete : ");
             string choice2 = Console.ReadLine();
             string statement = ("delete from carAppointments Where id = " + choice2);
             try
