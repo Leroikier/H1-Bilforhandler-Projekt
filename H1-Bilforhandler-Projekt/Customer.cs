@@ -21,38 +21,62 @@ namespace H1_Bilforhandler_Projekt
         public void createCustomer()
         {
             Console.Clear();
-            Console.Write("\n Type Firstname : ");
-            fName = Console.ReadLine().ToUpper();
-
-            Console.Write(" Type Lastname : ");
-            lName = Console.ReadLine().ToUpper();
-
-            Console.Write(" Type Registration Date dd-mm-yyyy : ");
-            customerDate = Console.ReadLine();
-
-            Console.Write(" Type Address : ");
-            Adr = Console.ReadLine().ToUpper();
             do
             {
+                Console.Clear();
                 check = "OK";
-                Console.Write(" Type Phone Number : ");
-                string input = Console.ReadLine();
-                if (input.Length != 8)
-                {
-                    Console.WriteLine("Phone number must be 8 characters long!");
-                    Console.ReadKey();
+                Console.Write("\n Type Firstname : ");
+                fName = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(fName, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
                     check = "not OK";
-                }
-                else if (Int32.TryParse(input, out pNumber))
-                    pNumber = Int32.Parse(input);
-                else
-                {
-                    Console.WriteLine("Only numbers allowed!");
-                    check = "not OK";
-                }
             }
             while (check == "not OK");
 
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Lastname : ");
+                lName = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(lName, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                    check = "not OK";                   
+            }
+            while (check == "not OK");
+
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Registration Date dd-mm-yyyy : ");
+                customerDate = Console.ReadLine();
+                if (!SQL.inputCheck(customerDate, "0123456789-",10))
+                    check = "not OK";
+            }
+            while (check == "not OK");
+
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Address : ");
+                Adr = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(Adr, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNM ", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
+
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Phone number : ");
+                string testInt = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(testInt, "0123456789", 8))
+                    check = "not OK";
+                else
+                    pNumber = Int32.Parse(testInt);
+            }
+            while (check == "not OK");
 
             string statement = "insert into Customer values ('" + fName + "','" + lName+ "','" + customerDate + "','" + Adr + "'," + pNumber + ")";
             try
@@ -90,42 +114,81 @@ namespace H1_Bilforhandler_Projekt
             {
                 case "1":
                     {
-                        Console.Write("\n Input new first name : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Input new first name : ");
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "fName";
                         break;
                     }
                 case "2":
                     {
-                        Console.Write("\n Input new last name : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Input new last name : ");
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "lName";
                         break;
                     }
                 case "3":
                     {
-                        Console.Write("\n Input new Registration Date : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Input new Registration Date : ");
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "0123456789-", 10))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "customerDate";
                         break;
                     }
                 case "4":
                     {
-                        Console.Write("\n Input new adress : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Input new adress : ");
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNM ", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "adr";
                         break;
                     }
                 case "5":
                     {
-                        Console.Write("\n Input new phone number : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Input new phone number : ");
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "0123456789", 8))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "pNumber";
                         statement = ("update Customer set " + column + " = " + input2 + " where pNumber = " + input1);
                         break;
                     }
             }
-            //string statement = ("update Customer set " + column + " = " + "'" + input2 + "'" + " where pNumber = " + input1);
             try
             {
                 SQL.sqlconnection(statement);

@@ -64,7 +64,7 @@ namespace H1_Bilforhandler_Projekt
                             Console.Clear();
                             Console.WriteLine("\n 1. Order by First name");
                             Console.WriteLine(" 2. Order by Car Brand");
-                            Console.Write(" Choose how to order the list : ");
+                            Console.Write("\n Choose how to order the list : ");
                             string input = Console.ReadLine();
 
                             switch (input)

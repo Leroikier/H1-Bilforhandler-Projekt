@@ -21,33 +21,106 @@ namespace H1_Bilforhandler_Projekt
         private string arrivalDate = "";
         private string leavingDate = "";
 
+        private string check = "OK";
+
         //Create Car
         public void createCar()
         {
             Console.Clear();
-            Console.Write("\n Type Brand : ");
-            brand = Console.ReadLine().ToUpper();
 
-            Console.Write(" Type Model : ");
-            model = Console.ReadLine().ToUpper();
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Brand : ");
+                brand = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(brand, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
 
-            Console.Write(" Type Age : ");
-            age = Int32.Parse(Console.ReadLine());
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Model : ");
+                model = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(model, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789- ", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
 
-            Console.Write(" Type Registration number : ");
-            regNumber = Console.ReadLine().ToUpper();
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Age : ");
+                string testInt = Console.ReadLine();
+                if (!SQL.inputCheck(testInt, "0123456789", 50))
+                    check = "not OK";
+                else
+                    age = Int32.Parse(testInt);
+            }
+            while (check == "not OK");
 
-            Console.Write(" Type Registration Date : ");
-            carDate = Console.ReadLine();
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Registration number : ");
+                regNumber = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(regNumber, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789 ", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
 
-            Console.Write(" Type Miles : ");
-            miles = Int32.Parse(Console.ReadLine());
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Registration Date : ");
+                carDate = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(carDate, "0123456789-", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
 
-            Console.Write(" Type Fueltype : ");
-            fuelType = Console.ReadLine().ToUpper();
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Miles : ");
+                string testInt = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(testInt, "0123456789", 7))
+                    check = "not OK";
+                else
+                    miles = Int32.Parse(testInt);
+            }
+            while (check == "not OK");
 
-            Console.Write(" Type Owner's phone : ");
-            customerID = Int32.Parse(Console.ReadLine());
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Fueltype : ");
+                fuelType = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(fuelType, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
+
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Type Owner's phone : ");
+                string testInt = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(testInt, "0123456789", 8))
+                    check = "not OK";
+                else
+                    customerID = Int32.Parse(testInt);
+            }
+            while (check == "not OK");
 
             string statement = "insert into Cars values ('" + brand + "','" + model + "'," + age + ",'" + regNumber + "','" + carDate + "'," + miles + ",'" + fuelType + "'," + customerID + ")";
 
@@ -126,57 +199,121 @@ namespace H1_Bilforhandler_Projekt
             {
                 case "1":
                     {
-                        Console.Write("\n Input new brand name : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Input new brand name : ");
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "brand";
                         break;
                     }
                 case "2":
                     {
-                        Console.Write("\n Input new model name : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Type new model : ");
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789- ", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "model";
                         break;
                     }
                 case "3":
                     {
-                        Console.Write("\n Input new registration date : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Type new registration date dd-mm-yyyy : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "0123456789-", 10))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "carDate";
                         break;
                     }
                 case "4":
                     {
-                        Console.Write("\n Input new registration number : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Type new registration number : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "regNumber";
                         break;
                     }
                 case "5":
                     {
-                        Console.Write("\n Input new age : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Type new age : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "0123456789", 4))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "age";
                         break;
                     }
                 case "6":
                     {
-                        Console.Write("\n Input new fueltype : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Type new fueltype : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "fuelType";
                         break;
                     }
                 case "7":
                     {
-                        Console.Write("\n Input new miles : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Type new miles : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "0123456789", 7))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "miles";
                         break;
                     }
                 case "8":
                     {
-                        Console.Write("\n Input new customer ID : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            Console.Clear();
+                            check = "OK";
+                            Console.Write("\n Type new customer ID : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "0123456789", 8))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "customerID";
                         break;
                     }
@@ -207,14 +344,41 @@ namespace H1_Bilforhandler_Projekt
             input = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input + "\n");
             Thread.Sleep(100);
+            Console.WriteLine("\n Car information");
             SQL.selectCars("select * from Cars where customerID =" + input);
-            Console.Write("\n Type the registration number of the car you want to create an appointment for : ");
-            string choice = Console.ReadLine().ToUpper();
+            string choice;
 
-            Console.Write("\n Input the arrival date : ");
-            arrivalDate = Console.ReadLine();
-            Console.Write("\n Input the leaving date : ");
-            leavingDate = Console.ReadLine();
+            do
+            {
+                check = "OK";
+                Console.Write("\n Type the registration number of the car you want to create an appointment for : ");
+                choice = Console.ReadLine().ToUpper();
+                if (!SQL.inputCheck(choice, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNM -", 10))
+                    check = "not OK";
+            }
+            while (check == "not OK");
+
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Input the arrival date : ");
+                arrivalDate = Console.ReadLine();
+                if (!SQL.inputCheck(arrivalDate, "0123456789-", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
+
+            do
+            {
+                Console.Clear();
+                check = "OK";
+                Console.Write("\n Input the leaving date : ");
+                leavingDate = Console.ReadLine();
+                if (!SQL.inputCheck(leavingDate, "0123456789-", 50))
+                    check = "not OK";
+            }
+            while (check == "not OK");
 
             string statement = "insert into carAppointments values ('" + arrivalDate + "','" + leavingDate + "','" + choice + "')";
             SQL.sqlconnection(statement);
@@ -265,22 +429,43 @@ namespace H1_Bilforhandler_Projekt
             {
                 case "1":
                     {
-                        Console.Write("\n Input new arrival date : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            check = "OK";
+                            Console.Write("\n Input new arrival date : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "0123456789-", 10))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "arrivalDate";
                         break;
                     }
                 case "2":
                     {
-                        Console.Write("\n Input new leaving date : ");
-                        input2 = Console.ReadLine();
+                        do
+                        {
+                            check = "OK";
+                            Console.Write("\n Input new leaving date : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "0123456789-", 10))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "leavingDate";
                         break;
                     }
                 case "3":
                     {
-                        Console.Write("\n Input new car id : ");
-                        input2 = Console.ReadLine().ToUpper();
+                        do
+                        {
+                            check = "OK";
+                            Console.Write("\n Input new car id : ");
+                            input2 = Console.ReadLine();
+                            if (!SQL.inputCheck(input2, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNM ", 50))
+                                check = "not OK";
+                        }
+                        while (check == "not OK");
                         column = "carID";
                         break;
                     }

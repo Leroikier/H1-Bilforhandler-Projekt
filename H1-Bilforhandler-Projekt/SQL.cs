@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
@@ -123,14 +124,14 @@ namespace H1_Bilforhandler_Projekt
                 foreach (DataRow CustomerAndCars in table.Rows)
                 {
                     Console.WriteLine("\n Customer information");
-                    Console.WriteLine(" ID : " + CustomerAndCars["id"].ToString());
+                    Console.WriteLine("\n ID : " + CustomerAndCars["id"].ToString());
                     Console.WriteLine(" First name : " + CustomerAndCars["fName"].ToString());
                     Console.WriteLine(" Last name : " + CustomerAndCars["lName"].ToString());
                     Console.WriteLine(" Registration date : " + CustomerAndCars["customerDate"].ToString());
                     Console.WriteLine(" Adress : " + CustomerAndCars["adr"].ToString());
                     Console.WriteLine(" Phone number : " + CustomerAndCars["pNumber"].ToString());
-                    Console.WriteLine("\n Cars belonging to this customer");
-                    Console.WriteLine(" ID : " + CustomerAndCars["id"].ToString());
+                    Console.WriteLine("\n Car belonging to this customer");
+                    Console.WriteLine("\n ID : " + CustomerAndCars["id"].ToString());
                     Console.WriteLine(" Brand : " + CustomerAndCars["brand"].ToString());
                     Console.WriteLine(" Model : " + CustomerAndCars["model"].ToString());
                     Console.WriteLine(" Age : " + CustomerAndCars["age"].ToString());
@@ -146,6 +147,40 @@ namespace H1_Bilforhandler_Projekt
                 //string theFirstRow = table.Rows[0]["fName"].ToString();
             }
             Console.ReadKey();
+        }
+
+        public static bool inputCheck(string input, string chars, int stringLength)
+        {
+            bool pass = true;            
+            if (input == "")
+            {
+                pass = false;
+                Console.WriteLine("\n Please input something!");
+                Thread.Sleep(500);
+            }                
+            else
+            {
+                if(input.Length <= stringLength)
+                {
+                    for (int i = 0; i < input.Length; i++)
+                    {
+                        if ((chars).IndexOf(input.Substring(i, 1)) <0)
+                        {
+                            pass = false;
+                            Console.WriteLine("\n Invalid characters deteceted! ");
+                            Thread.Sleep(1000);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    pass = false;
+                    Console.WriteLine("\n Maximum of {0} characters allowed! ", stringLength);
+                    Thread.Sleep(1000);
+                }
+            }
+            return pass;
         }
     }
 }
