@@ -25,9 +25,11 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create Customer");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Firstname : ");
                 fName = Console.ReadLine().ToUpper();
-                if (!SQL.inputCheck(fName, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                if (!SQL.inputCheck(fName, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNMÄÖ", 50))
                     check = "not OK";
             }
             while (check == "not OK");
@@ -36,9 +38,11 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create Customer");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Lastname : ");
                 lName = Console.ReadLine().ToUpper();
-                if (!SQL.inputCheck(lName, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                if (!SQL.inputCheck(lName, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNMÄÖ", 50))
                     check = "not OK";                   
             }
             while (check == "not OK");
@@ -47,6 +51,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create Customer");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Registration Date dd-mm-yyyy : ");
                 customerDate = Console.ReadLine();
                 if (!SQL.inputCheck(customerDate, "0123456789-",10))
@@ -58,9 +64,11 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create Customer");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Address : ");
                 Adr = Console.ReadLine().ToUpper();
-                if (!SQL.inputCheck(Adr, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNM ", 50))
+                if (!SQL.inputCheck(Adr, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNMÄÖ ", 50))
                     check = "not OK";
             }
             while (check == "not OK");
@@ -69,6 +77,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create Customer");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Phone number : ");
                 string testInt = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(testInt, "0123456789", 8))
@@ -82,14 +92,14 @@ namespace H1_Bilforhandler_Projekt
             try
             {
                 SQL.sqlconnection(statement);
-                Console.WriteLine("\n Customer has been created");
+                Console.WriteLine("\n Customer has been created!");
             }
             catch (Exception)
             {   
                 Console.WriteLine("\n ERROR : Phone number belongs to another customer!");
                 Console.ReadKey();
             }
-            Console.WriteLine("\n Returning to main menu");
+            Console.WriteLine("\n Returning to main menu...");
 
             Thread.Sleep(3000);
         }
@@ -99,15 +109,20 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1, input2="", column="", statement="";
+            Console.WriteLine("\n Update Customer");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("\n Update Customer");
+            Console.WriteLine("___________________");
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1); 
             Console.WriteLine("\n 1. First Name");
             Console.WriteLine(" 2. Last Name");
             Console.WriteLine(" 3. Registration Date");
             Console.WriteLine(" 4. Adress");
             Console.WriteLine(" 5. Phone Number\n");
-            Console.Write(" What information do you want to update : ");
+            Console.Write(" What information do you wish to update? : ");
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -118,9 +133,11 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update Customer");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Input new first name : ");
                             input2 = Console.ReadLine().ToUpper();
-                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNMÄÖ", 50))
                                 check = "not OK";
                         }
                         while (check == "not OK");
@@ -133,9 +150,11 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update Customer");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Input new last name : ");
                             input2 = Console.ReadLine().ToUpper();
-                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNMÄÖ", 50))
                                 check = "not OK";
                         }
                         while (check == "not OK");
@@ -148,13 +167,15 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update Customer");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Input new Registration Date : ");
                             input2 = Console.ReadLine().ToUpper();
                             if (!SQL.inputCheck(input2, "0123456789-", 10))
                                 check = "not OK";
                         }
                         while (check == "not OK");
-                        column = "customerDate";
+                        column = "customerDate"; 
                         break;
                     }
                 case "4":
@@ -163,13 +184,15 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update Customer");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Input new adress : ");
                             input2 = Console.ReadLine().ToUpper();
-                            if (!SQL.inputCheck(input2, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNM ", 50))
+                            if (!SQL.inputCheck(input2, "0123456789QWERTYUIOPÅASDFGHJKLÆØZXCVBNMÄÖ ", 50))
                                 check = "not OK";
                         }
                         while (check == "not OK");
-                        column = "adr";
+                        column = "adr"; 
                         break;
                     }
                 case "5":
@@ -178,6 +201,8 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update Customer");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Input new phone number : ");
                             input2 = Console.ReadLine().ToUpper();
                             if (!SQL.inputCheck(input2, "0123456789", 8))
@@ -185,10 +210,15 @@ namespace H1_Bilforhandler_Projekt
                         }
                         while (check == "not OK");
                         column = "pNumber";
-                        statement = ("update Customer set " + column + " = " + input2 + " where pNumber = " + input1);
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("\n Invalid input!");
                         break;
                     }
             }
+            statement = ("update Customer set " + column + " = " + "'" + input2 + "'" + " where pNumber = " + input1);
             try
             {
                 SQL.sqlconnection(statement);
@@ -199,7 +229,7 @@ namespace H1_Bilforhandler_Projekt
                 Console.Write("\n ERROR : Phone number belongs to another customer!");
                 Console.ReadKey();
             }
-            Console.WriteLine("\n Returning to main menu");
+            Console.WriteLine("\n Returning to main menu...");
             Thread.Sleep(3000);
         }
 
@@ -208,6 +238,8 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1 = "";
+            Console.WriteLine("\n Delete Customer");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");

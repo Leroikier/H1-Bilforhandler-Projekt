@@ -13,9 +13,10 @@ namespace H1_Bilforhandler_Projekt
     {
         private static string ConnectionString = "Data Source=SKAB1-PC-11;Initial Catalog=Autoshop; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         
-        //Insert // husk og tilføje til klasse diagram
+        //SQL Connection /Her opretter vi en forbindelse til vores SQL database.
         public static void sqlconnection(string SQL)
         {
+            //Using sørger for at lukke forbindelsen efter brug
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
@@ -24,20 +25,23 @@ namespace H1_Bilforhandler_Projekt
             }
         }
 
-        //Select
+        //Select /Metode til og vælge customers
         public static void selectCustomers(string SQL)
         {
-            Console.Clear();
+            //Der oprettes et nyt datatable
             DataTable table = new DataTable();
+            //Bruger SQL connection metoden til og oprette ny forbindelse
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
+                //Adapter til at fylde det nyoprettede table op
                 SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
                 adapter.Fill(table);
 
                 
                 foreach (DataRow Customer in table.Rows)
                 {
+                    //For hvert entry i table.Rows skal der udskrives nedenstående
                     Console.WriteLine("\n Customer information");
                     Console.WriteLine("\n ID : " + Customer["id"].ToString());
                     Console.WriteLine(" First name : " + Customer["fName"].ToString());
@@ -47,8 +51,6 @@ namespace H1_Bilforhandler_Projekt
                     Console.WriteLine(" Phone number : " + Customer["pNumber"].ToString());
                     Console.WriteLine("_____________________________________");
                 }
-                //For at få vist en bestemt kolonne i en bestemt række
-                //string theFirstRow = table.Rows[0]["fName"].ToString();
             }
             Console.ReadKey();
         }
@@ -56,7 +58,6 @@ namespace H1_Bilforhandler_Projekt
         //Select Cars
         public static void selectCars(string SQL)
         {
-            //Console.Clear();
             DataTable table = new DataTable();
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -94,7 +95,6 @@ namespace H1_Bilforhandler_Projekt
                 SqlDataAdapter adapter = new SqlDataAdapter(SQL, con);
                 adapter.Fill(table);
 
-                Console.WriteLine("\n id");
                 foreach (DataRow Customer in table.Rows)
                 {
                     Console.Clear();
@@ -112,7 +112,6 @@ namespace H1_Bilforhandler_Projekt
         //Select Customers And Cars
         public static void selectCustomersAndCars(string SQL)
         {
-            Console.Clear();
             DataTable table = new DataTable();
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -130,7 +129,7 @@ namespace H1_Bilforhandler_Projekt
                     Console.WriteLine(" Registration date : " + CustomerAndCars["customerDate"].ToString());
                     Console.WriteLine(" Adress : " + CustomerAndCars["adr"].ToString());
                     Console.WriteLine(" Phone number : " + CustomerAndCars["pNumber"].ToString());
-                    Console.WriteLine("\n Car belonging to this customer");
+                    Console.WriteLine("\n Cars belonging to this customer : ");
                     Console.WriteLine("\n ID : " + CustomerAndCars["id"].ToString());
                     Console.WriteLine(" Brand : " + CustomerAndCars["brand"].ToString());
                     Console.WriteLine(" Model : " + CustomerAndCars["model"].ToString());
@@ -149,22 +148,25 @@ namespace H1_Bilforhandler_Projekt
             Console.ReadKey();
         }
 
+        //inputCheck /Kigger i det indtastede input efter fejl
         public static bool inputCheck(string input, string chars, int stringLength)
         {
-            bool pass = true;            
+            bool pass = true;    
+            //Hvis det indtastede input er tomt(null) køres der nedenstående
             if (input == "")
             {
+                //pass sættes til false og metoden starter forfra
                 pass = false;
                 Console.WriteLine("\n Please input something!");
                 Thread.Sleep(500);
             }                
             else
             {
-                if(input.Length <= stringLength)
+                if(input.Length <= stringLength) //Det indtastede inputs længde må ikke være længre end vores maximalt tilladte længde
                 {
                     for (int i = 0; i < input.Length; i++)
                     {
-                        if ((chars).IndexOf(input.Substring(i, 1)) <0)
+                        if ((chars).IndexOf(input.Substring(i, 1)) <0) //Checker så at hver tegn i det indtastede input er en godkendt karakter
                         {
                             pass = false;
                             Console.WriteLine("\n Invalid characters deteceted! ");
@@ -176,7 +178,7 @@ namespace H1_Bilforhandler_Projekt
                 else
                 {
                     pass = false;
-                    Console.WriteLine("\n Maximum of {0} characters allowed! ", stringLength);
+                    Console.WriteLine("\n Maximum of {0} characters allowed! ", stringLength); 
                     Thread.Sleep(1000);
                 }
             }

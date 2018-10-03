@@ -13,33 +13,36 @@ namespace H1_Bilforhandler_Projekt
     {
         static void Main(string[] args)
         {
+            //Oprettelse af instancer /Customer /Car
             Customer customer1 = new Customer();
             Car car1 = new Car();
 
             bool quit = false;
 
+            //Hovedmenuen //Switchase //Do while //Metode kald
             do
             {
                 Console.Clear();
 
-                Console.WriteLine(" \n Welcome too AutoShop 1.0\n");
+                Console.WriteLine(" \n Welcome to AutoShop 1.0");
+                Console.WriteLine("___________________________\n");
                 Console.WriteLine(" 1. Create Customer");
                 Console.WriteLine(" 2. Edit Customer");
                 Console.WriteLine(" 3. Delete Customer");
                 Console.WriteLine(" 4. Show Customers");
-                Console.WriteLine();
+                Console.WriteLine("___________________________\n");
                 Console.WriteLine(" 5. Create Car");
                 Console.WriteLine(" 6. Edit Car");
                 Console.WriteLine(" 7. Delete Car");
                 Console.WriteLine(" 8. Show a customer's cars");
-                Console.WriteLine();
+                Console.WriteLine("___________________________\n");
                 Console.WriteLine(" 9. Create Appointment");
                 Console.WriteLine(" 10. Edit Appointment");
                 Console.WriteLine(" 11. Delete Appointment");
-                Console.WriteLine(" 12. Show Appointment");
-                Console.WriteLine();
+                Console.WriteLine(" 12. Show Appointments");
+                Console.WriteLine("___________________________\n");
                 Console.WriteLine(" 13. Exit/Close\n");
-                Console.Write(" Chose a number : ");
+                Console.Write(" Choose a number : ");
                 string valg = Console.ReadLine();
 
                 switch (valg)
@@ -62,6 +65,8 @@ namespace H1_Bilforhandler_Projekt
                     case "4":
                         {
                             Console.Clear();
+                            Console.WriteLine("\n Show customers");
+                            Console.WriteLine("___________________");
                             Console.WriteLine("\n 1. Order by First name");
                             Console.WriteLine(" 2. Order by Car Brand");
                             Console.Write("\n Choose how to order the list : ");
@@ -71,16 +76,22 @@ namespace H1_Bilforhandler_Projekt
                             {
                                 case "1":
                                     {
+                                        Console.WriteLine("\n Show customers");
+                                        Console.WriteLine("___________________");
                                         SQL.selectCustomersAndCars("select * from Customer left join Cars on pNumber = customerID Order BY fName");
                                         break;
                                     }
                                 case "2":
                                     {
+                                        Console.WriteLine("\n Show customers");
+                                        Console.WriteLine("___________________");
                                         SQL.selectCustomersAndCars("select * from Customer left join Cars on pNumber = customerID Order BY brand");
                                         break;
                                     }
                                 default:
                                     {
+                                        Console.WriteLine("\n Show customers");
+                                        Console.WriteLine("___________________");
                                         Console.WriteLine("\n Invalid input! Returning to main menu...");
                                         Thread.Sleep(2000);
                                         break;
@@ -136,7 +147,6 @@ namespace H1_Bilforhandler_Projekt
                 }
             }            
             while (quit == false);
-
         }
     }
 }

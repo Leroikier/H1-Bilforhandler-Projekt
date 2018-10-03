@@ -32,6 +32,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Brand : ");
                 brand = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(brand, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
@@ -43,6 +45,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Model : ");
                 model = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(model, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789- ", 50))
@@ -54,6 +58,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Age : ");
                 string testInt = Console.ReadLine();
                 if (!SQL.inputCheck(testInt, "0123456789", 50))
@@ -67,6 +73,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Registration number : ");
                 regNumber = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(regNumber, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789 ", 50))
@@ -78,6 +86,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Registration Date : ");
                 carDate = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(carDate, "0123456789-", 50))
@@ -89,6 +99,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Miles : ");
                 string testInt = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(testInt, "0123456789", 7))
@@ -102,6 +114,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Fueltype : ");
                 fuelType = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(fuelType, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
@@ -113,6 +127,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create car");
+                Console.WriteLine("___________________");
                 Console.Write("\n Type Owner's phone : ");
                 string testInt = Console.ReadLine().ToUpper();
                 if (!SQL.inputCheck(testInt, "0123456789", 8))
@@ -127,14 +143,14 @@ namespace H1_Bilforhandler_Projekt
             try
             {
                 SQL.sqlconnection(statement);
-                Console.WriteLine("\n Car Created");
+                Console.WriteLine("\n Car Created!");
             }
             catch (Exception)
             {
                 Console.WriteLine("\n ERROR : Registration number belongs to another car!");
                 Console.ReadKey();
             }
-            Console.WriteLine("\n Returning to main menu");
+            Console.WriteLine("\n Returning to main menu...");
 
             Thread.Sleep(3000);
         }
@@ -144,12 +160,17 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1 = "";
+            Console.WriteLine("\n Show cars");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("\n Show cars");
+            Console.WriteLine("___________________");
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1 + "ORDER by ID");
             
-            Thread.Sleep(3000);
+            Console.ReadKey();
         }
 
         //Delete Car
@@ -157,8 +178,13 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1 = "";
+            Console.WriteLine("\n Delete car");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("\n Delete car");
+            Console.WriteLine("___________________");
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1);
             Console.Write("\n Type the registration number of the car you want to delete : ");
@@ -166,8 +192,8 @@ namespace H1_Bilforhandler_Projekt
 
             string statement2 = ("delete from Cars Where regNumber = '" + choice + "'" + "\n");
             SQL.sqlconnection(statement2);
-            Console.WriteLine("\n Car has been erased");
-            Console.WriteLine("\n Returning to main menu");
+            Console.WriteLine("\n Car has been erased!");
+            Console.WriteLine("\n Returning to main menu...");
             Thread.Sleep(3000);
         }
 
@@ -176,14 +202,21 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1, input2 = "", column = "";
+            Console.WriteLine("\n Update car");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("\n Update Cars");
+            Console.WriteLine("___________________");
             SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
             SQL.selectCars("select * from Cars where customerID =" + input1);
             Console.Write("\n Type the registration number of the car you want to update : ");
             string choice = Console.ReadLine().ToUpper();
 
             Console.Clear();
+            Console.WriteLine("\n Update car");
+            Console.WriteLine("___________________");
             Console.WriteLine("\n 1. Brand");
             Console.WriteLine(" 2. Model");
             Console.WriteLine(" 3. Registration Date");
@@ -191,7 +224,6 @@ namespace H1_Bilforhandler_Projekt
             Console.WriteLine(" 5. Age");
             Console.WriteLine(" 6. Fueltype");
             Console.WriteLine(" 7. Miles");
-            Console.WriteLine(" 8. Customer ID");
             Console.Write("\n What information do you want to update : ");
             string choice1 = Console.ReadLine();
 
@@ -203,6 +235,8 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update car");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Input new brand name : ");
                             input2 = Console.ReadLine().ToUpper();
                             if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
@@ -218,6 +252,8 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update car");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Type new model : ");
                             input2 = Console.ReadLine().ToUpper();
                             if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789- ", 50))
@@ -233,6 +269,8 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update car");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Type new registration date dd-mm-yyyy : ");
                             input2 = Console.ReadLine();
                             if (!SQL.inputCheck(input2, "0123456789-", 10))
@@ -248,9 +286,11 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update car");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Type new registration number : ");
-                            input2 = Console.ReadLine();
-                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789", 50))
+                            input2 = Console.ReadLine().ToUpper();
+                            if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM0123456789 ", 50))
                                 check = "not OK";
                         }
                         while (check == "not OK");
@@ -263,6 +303,8 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update car");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Type new age : ");
                             input2 = Console.ReadLine();
                             if (!SQL.inputCheck(input2, "0123456789", 4))
@@ -278,8 +320,10 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update car");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Type new fueltype : ");
-                            input2 = Console.ReadLine();
+                            input2 = Console.ReadLine().ToUpper();
                             if (!SQL.inputCheck(input2, "QWERTYUIOPÅASDFGHJKLÆØZXCVBNM", 50))
                                 check = "not OK";
                         }
@@ -293,6 +337,8 @@ namespace H1_Bilforhandler_Projekt
                         {
                             Console.Clear();
                             check = "OK";
+                            Console.WriteLine("\n Update car");
+                            Console.WriteLine("___________________");
                             Console.Write("\n Type new miles : ");
                             input2 = Console.ReadLine();
                             if (!SQL.inputCheck(input2, "0123456789", 7))
@@ -300,21 +346,6 @@ namespace H1_Bilforhandler_Projekt
                         }
                         while (check == "not OK");
                         column = "miles";
-                        break;
-                    }
-                case "8":
-                    {
-                        do
-                        {
-                            Console.Clear();
-                            check = "OK";
-                            Console.Write("\n Type new customer ID : ");
-                            input2 = Console.ReadLine();
-                            if (!SQL.inputCheck(input2, "0123456789", 8))
-                                check = "not OK";
-                        }
-                        while (check == "not OK");
-                        column = "customerID";
                         break;
                     }
             }
@@ -327,11 +358,11 @@ namespace H1_Bilforhandler_Projekt
             }
             catch (Exception)
             {
-                Console.WriteLine("\n Registration ID already exists");
+                Console.WriteLine("\n Registration number already exists!");
                 Console.ReadKey();
             }
 
-            Console.WriteLine("\n Returning to main menu");
+            Console.WriteLine("\n Returning to main menu...");
             Thread.Sleep(3000);
         }
 
@@ -340,8 +371,13 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input;
+            Console.WriteLine("\n Create appointments");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("\n Create appointments");
+            Console.WriteLine("___________________");
             SQL.selectCustomers("select * from Customer Where pNumber =" + input + "\n");
             Thread.Sleep(100);
             Console.WriteLine("\n Car information");
@@ -362,6 +398,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create appointments");
+                Console.WriteLine("___________________");
                 Console.Write("\n Input the arrival date : ");
                 arrivalDate = Console.ReadLine();
                 if (!SQL.inputCheck(arrivalDate, "0123456789-", 50))
@@ -373,6 +411,8 @@ namespace H1_Bilforhandler_Projekt
             {
                 Console.Clear();
                 check = "OK";
+                Console.WriteLine("\n Create appointments");
+                Console.WriteLine("___________________");
                 Console.Write("\n Input the leaving date : ");
                 leavingDate = Console.ReadLine();
                 if (!SQL.inputCheck(leavingDate, "0123456789-", 50))
@@ -383,7 +423,7 @@ namespace H1_Bilforhandler_Projekt
             string statement = "insert into carAppointments values ('" + arrivalDate + "','" + leavingDate + "','" + choice + "')";
             SQL.sqlconnection(statement);
 
-            Console.WriteLine("\n Appointment made");
+            Console.WriteLine("\n Appointment made!");
             Console.WriteLine("\n Returning to main menu...");
             Thread.Sleep(3000);
         }
@@ -393,15 +433,18 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input;
+            Console.WriteLine("\n Show appointments");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("\n Show appointments");
+            Console.WriteLine("___________________");
             SQL.selectCustomers("select * from Customer Where pNumber =" + input + "\n");
             Console.WriteLine("\n Cars belonging to this customer:");
             SQL.selectCars("select * from Cars where customerID =" + input);
             Console.Write("\n Type the registration number of the car whose appointments you want to view : ");
-            string choice = Console.ReadLine().ToUpper();
-
-            
+            string choice = Console.ReadLine().ToUpper();            
             Console.WriteLine("\n Appointments for this car:");
             SQL.selectAppointments("select * from carAppointments Where carID = '" + choice + "' order by id" + "\n");
             Console.ReadKey();
@@ -412,9 +455,13 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1, input2 = "", column = "";
+            Console.WriteLine("\n Update appointments");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
-            //SQL.selectCustomers("select * from Customer Where pNumber =" + input1);
+            Console.Clear();
+            Console.WriteLine("\n Update appointments");
+            Console.WriteLine("___________________");
             SQL.selectCars("select * from Cars where customerID =" + input1);
             Console.Write("\n Type the registration number of the car whose appointments you want to edit : ");
             string choice1 = Console.ReadLine().ToUpper();
@@ -473,6 +520,7 @@ namespace H1_Bilforhandler_Projekt
             string statement = ("update carAppointments set " + column + " = " + "'" + input2 + "'" + " where carID = '" + choice1 + "'");
             SQL.sqlconnection(statement);
             Console.WriteLine("\n Appointment info updated!");
+            Console.WriteLine("\n Returning to main menu...");
             Thread.Sleep(3000);
         }
 
@@ -481,9 +529,13 @@ namespace H1_Bilforhandler_Projekt
         {
             Console.Clear();
             string input1 = "";
+            Console.WriteLine("\n Delete appointments");
+            Console.WriteLine("___________________");
             Console.Write("\n Type Phone Number of a Customer : ");
             input1 = Console.ReadLine();
-            //SQL.selectCustomers("select * from Customer Where pNumber =" + input1 + "\n");
+            Console.Clear();
+            Console.WriteLine("\n Delete appointments");
+            Console.WriteLine("___________________");
             SQL.selectCars("select * from Cars where customerID =" + input1);
             Console.Write("\n Type the registration number of the car whose appointments you want to delete : ");
             string choice1 = Console.ReadLine().ToUpper();
@@ -501,11 +553,9 @@ namespace H1_Bilforhandler_Projekt
                 Console.WriteLine("\n No appointment with that id exists!");
                 Console.ReadKey();
             }
-
-            Console.WriteLine("\n Returning to main menu!");
+            Console.WriteLine("\n Returning to main menu...");
 
             Thread.Sleep(3000);
         }
     }
-
 }
