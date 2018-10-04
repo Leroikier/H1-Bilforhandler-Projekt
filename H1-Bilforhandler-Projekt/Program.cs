@@ -19,7 +19,7 @@ namespace H1_Bilforhandler_Projekt
 
             bool quit = false;
 
-            //Hovedmenuen //Switchase //Do while //Metode kald
+            //Hovedmenuen /Switchase /Do while //Metode kald
             do
             {
                 Console.Clear();

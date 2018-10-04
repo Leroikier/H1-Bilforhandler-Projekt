@@ -171,7 +171,7 @@ namespace H1_Bilforhandler_Projekt
                             pass = false;
                             Console.WriteLine("\n Invalid characters deteceted! ");
                             Thread.Sleep(1000);
-                            break;
+                            break; // stoppor forlækken+
                         }
                     }
                 }
